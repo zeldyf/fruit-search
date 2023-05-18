@@ -59,7 +59,7 @@ ul li:hover {
 
 input {
   position: relative;
-    outline: 0 solid #fe5300;
+    /* outline: 0 solid #fe5300; */
     background: #ffffff1c;
     border: none;
     border-bottom: 1px solid #ff5500;
@@ -68,9 +68,9 @@ input {
     padding: 5px 10px;
   }
 
-  #fruit :focus {
+  /* #fruit :focus {
     outline: 1px solid #fe5300;
-  }
+  } */
 
   ::placeholder {
   color: rgba(0, 0, 0, 0.596);
