@@ -9,38 +9,33 @@ function search(str) {
 
 function searchHandler(e) {
 	const results = search(inputField.value);
-	inputField.value === "" ? suggestions.replaceChildren() : showSuggestions(results, inputField.value);
+	inputField.value ? showSuggestions(results, inputField.value) : suggestions.replaceChildren();
 }
 
 function showSuggestions(results, inputVal) {
 	suggestions.replaceChildren();
-	for (let result of results) {
+	for (let fruit of results) {
+		const result = fruit.toLowerCase();
+		const input = inputVal.toLowerCase();
+		const boldStart = result.search(input);
 		const newLi = document.createElement("li");
-		const input = result.toLowerCase();
-		const startIdx = input.search(inputVal);
-		const upperCaseResult = inputVal.charAt(0).toUpperCase() + inputVal.slice(1);
-
-		if (input.startsWith(inputVal.toLowerCase())) {
-			const toStyle = document.createElement("span");
-			toStyle.className = "bold";
-			toStyle.innerText = upperCaseResult;
-			const noStyle = document.createElement("span");
-			noStyle.innerText = input.slice(inputVal.length);
-			newLi.appendChild(toStyle)
-			newLi.appendChild(noStyle);
+		const bold = document.createElement("b");
+		const begWord = document.createElement("span");
+		const endWord = document.createElement("span");
+		if (result.startsWith(input)) {
+			bold.innerText = inputVal[0].toUpperCase() + input.slice(1);
+			endWord.innerText = result.slice(inputVal.length);
+			newLi.appendChild(bold);
+			newLi.appendChild(endWord);
 		} else {
-			const begWord = document.createElement("span");
-			begWord.innerText = result.slice(0, startIdx);
-			const endWord = document.createElement("span");
-			endWord.innerText = result.slice(startIdx + inputVal.length);
-			const toStyle = document.createElement("span");
-			toStyle.className = "bold";
-			toStyle.innerText = inputVal;
+			begWord.innerText = fruit.slice(0, boldStart);
+			endWord.innerText = fruit.slice(boldStart + inputVal.length);
+			bold.innerText = input;
 			newLi.appendChild(begWord);
-			newLi.appendChild(toStyle);
+			newLi.appendChild(bold);
 			newLi.appendChild(endWord);
 		}
- 		suggestions.appendChild(newLi)
+		suggestions.appendChild(newLi);
 	}
 }
 
