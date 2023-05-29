@@ -68,15 +68,7 @@ input {
     padding: 5px 10px;
   }
 
-  /* #fruit :focus {
-    outline: 1px solid #fe5300;
-  } */
-
   ::placeholder {
   color: rgba(0, 0, 0, 0.596);
   font-size: 1em;
-}
-
-.bold {
-  font-weight: 600;
 }
